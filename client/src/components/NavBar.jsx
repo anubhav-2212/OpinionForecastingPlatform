@@ -1,5 +1,7 @@
 import React from "react";
+import useWallet from "../hooks/useWallet";
 const Navbar = () => {
+    const[wallet,loading]=useWallet();
 
   return (
     <nav className="w-full h-16 flex items-center justify-between px-6 border-b border-gray-200 bg-white">
@@ -45,7 +47,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg">
           <span className="text-xs text-gray-500">Wallet</span>
           <span className="text-sm font-semibold text-gray-900">
-            1,250
+            {loading? "Loading...":wallet}
           </span>
         </div>
 

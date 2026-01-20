@@ -9,7 +9,7 @@ const useWallet = () => {
     useEffect(()=>{
         const fetchWallet=async()=>{
             try {
-                const res=await api.get('/wallet')
+                const res=await api.get('/wallet/balance')
                 setWallet(res?.data?.data?.balance)
 
                 

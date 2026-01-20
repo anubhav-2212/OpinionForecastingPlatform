@@ -4,6 +4,6 @@ import userMiddleware from "../middlewares/auth.middlewares.js";
 
 const walletRoutes = express.Router();
 
-walletRoutes.get('/wallet',userMiddleware,getwallet)
+walletRoutes.get('/balance',userMiddleware,getwallet)
 
 export default walletRoutes
