@@ -1,5 +1,5 @@
 import express from "express";
-import userForecastController, { getForecastHistory, submitForecast } from "../controller/userForecast.controller.js";
+import  { getForecastHistory, submitForecast } from "../controller/userForecast.controller.js";
 import userMiddleware from "../middlewares/auth.middlewares.js";
 const userForecastRouter=express.Router();
 
