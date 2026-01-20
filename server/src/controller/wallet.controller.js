@@ -11,7 +11,9 @@ export const getwallet=async(req,res)=>{
         }
         return res.status(200).json({
             success:true,
-            wallet
+            data:{
+                balance:wallet.balance
+            }
         })
     } catch (error) {
         return res.status(500).json({
