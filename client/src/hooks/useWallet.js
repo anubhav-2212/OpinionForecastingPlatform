@@ -24,6 +24,6 @@ const useWallet = () => {
         fetchWallet();
         
     },[])
-    return [wallet,loading]
+    return {wallet,loading}
 }
 export default useWallet

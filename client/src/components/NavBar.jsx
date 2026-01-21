@@ -1,7 +1,9 @@
 import React from "react";
 import useWallet from "../hooks/useWallet";
+import { useAuth } from "../context/AuthContext";
 const Navbar = () => {
-    const[wallet,loading]=useWallet();
+    const{wallet,loading}=useWallet();
+    const {isAuth}=useAuth();
 
   return (
     <nav className="w-full h-16 flex items-center justify-between px-6 border-b border-gray-200 bg-white">

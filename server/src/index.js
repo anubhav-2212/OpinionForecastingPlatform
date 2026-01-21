@@ -1,4 +1,4 @@
-import express,{urlencoded} from "express";
+import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./utils/db.js";
@@ -11,19 +11,19 @@ import walletRoutes from "./routes/wallet.routes.js";
 dotenv.config();
 
 const app=express();
-const PORT=process.env.PORT;
-app.use(express.json());
+const PORT=process.env.PORT||5000;
+
 app.use(cors({
     origin:"http://localhost:5173",
     credentials:true,
-    allowedHeaders:["Content-Type","Authorization"] ,
-    methods:["GET","POST","PUT","DELETE"]
+    
 }));
+app.use(express.json());
 app.use(cookieParser( ))
-app.use(urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true}));
 app.use("/api/v1/auth",authRoutes)
 app.use("/api/v1/prediction",predictionRoutes)
-app.use('api/v1/userForecast',userForecastRouter)
+app.use('/api/v1/userForecast',userForecastRouter)
 app.use('/api/v1/wallet',walletRoutes)
 
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`));

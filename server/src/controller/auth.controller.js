@@ -3,6 +3,7 @@ import User from "../models/auth.models.js"
 import jwt from "jsonwebtoken"
 import Wallet from "../models/wallet.models.js"
 
+
 export const register=async(req,res)=>{
 
     const {name,email,password,role}=req.body
@@ -38,7 +39,7 @@ export const register=async(req,res)=>{
         res.status(201).json({
             success:true,
             message:"User created successfully",
-            User:{name:user.name,
+            user:{name:user.name,
             role:user.role,
             email:user.email
         }
@@ -76,11 +77,16 @@ export const login=async(req,res)=>{
                 message:"Invalid credentials"})
         }
         const token=jwt.sign({id:user._id,email:user.email,role:user.role},process.env.JWT_SECRET,{expiresIn:"1d"})
-        res.cookie("token",token,{httpOnly:false,secure:false,sameSite:"none"})
+        res.cookie("token",token,{httpOnly:true,secure:false,sameSite:"lax"})
         res.status(200).json({
             success:true,
             message:"User logged in successfully",
-            user:user.role})
+            user:{
+                name:user.name,
+                email:user.email,
+                role:user.role
+
+            }})
     } catch (error) {
         console.log(error)
         res.status(500).json({success:false,

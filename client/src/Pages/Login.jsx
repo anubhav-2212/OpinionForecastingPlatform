@@ -4,12 +4,14 @@ import toast from 'react-hot-toast';
 import { Link,  useNavigate } from 'react-router-dom';
 import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
+import { useAuth } from '../context/AuthContext';
 
 
 
 
 const Login = () => {
      const[show,setShow]=useState(false)
+     const{fetchUser}=useAuth();
     const navigate=useNavigate();
     const User={
         email:"",
@@ -24,16 +26,19 @@ const Login = () => {
         }))
         console.log(user.email,user.password)
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault()
         axios.post('http://localhost:5000/api/v1/auth/login',user,
             {
         withCredentials: true
     })
-        .then((res)=>{
+        .then(async(res)=>{
             console.log(res?.data?.message)
             toast.success(res?.data?.message)
-            navigate('/home')
+              navigate('/home')
+            await fetchUser();
+          
+          
         })
        .catch((err) => {
     console.log("FULL ERROR:", err);
