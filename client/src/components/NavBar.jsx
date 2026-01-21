@@ -1,9 +1,19 @@
 import React from "react";
 import useWallet from "../hooks/useWallet";
 import { useAuth } from "../context/AuthContext";
+import { CiLogout } from "react-icons/ci";
+import api from "../api/axios";
+import toast from "react-hot-toast";
+
 const Navbar = () => {
     const{wallet,loading}=useWallet();
     const {isAuth}=useAuth();
+    const{logout}=useAuth();
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
+      await logout();
+      toast.success("Logged Out Successfully")
+    }
 
   return (
     <nav className="w-full h-16 flex items-center justify-between px-6 border-b border-gray-200 bg-white">
@@ -55,7 +65,7 @@ const Navbar = () => {
 
         {/* Profile */}
         <div className="w-9 h-9 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold cursor-pointer">
-          A
+          <CiLogout onClick={handleSubmit}/>
         </div>
       </div>
 

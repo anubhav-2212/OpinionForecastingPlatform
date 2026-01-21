@@ -26,14 +26,29 @@ export const AuthProvider = ({children}) => {
                 setLoading(false)
             }
         }
+        const logout=async()=>{
+            try {
+                await api.post('/auth/logout')
+              
+            } catch (error) {
+                console.error("Error logging out user",error)
+                
+            }
+            finally{
+               setUser(null)
+                setIsAuth(false)
+            }
+        }
 
     useEffect(()=>{
         fetchUser();
     },[])
 
+  
+
 
   return (
-   <AuthContext.Provider value={{user,loading,isAuth,fetchUser}}>
+   <AuthContext.Provider value={{user,loading,isAuth,fetchUser,logout}}>
     {children}
     </AuthContext.Provider>
   )
