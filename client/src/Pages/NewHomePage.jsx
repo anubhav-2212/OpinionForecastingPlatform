@@ -7,6 +7,9 @@ const NewHomePage = () => {
     <div>
         
       <Navbar/>
+      <div className='w-full h-[500px] bg-amber-300'>
+        Live Predictions
+      </div>
     </div>
   )
 }
