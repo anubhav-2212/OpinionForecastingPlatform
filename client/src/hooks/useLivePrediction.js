@@ -8,7 +8,7 @@ const useLivePredictions = () => {
   useEffect(() => {
     const fetchLivePredictions = async () => {
       try {
-        const res = await api.get("/prediction/live");
+        const res = await api.get("/prediction/all?status=live");
         setPredictions(res?.data?.data || []);
       } catch (error) {
         console.log("Error fetching live predictions", error);

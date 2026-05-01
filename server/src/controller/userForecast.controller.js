@@ -9,7 +9,6 @@ export const submitForecast=async(req,res)=>{
         const userId=req.user.id
         const{forecastId}=req.params
         const{choice,forecastAmount}=req.body
-        console.log(choice,forecastAmount,forecastId)
         //basic validation
         if(!choice||!forecastAmount){
             return res.status(400).json({
@@ -19,10 +18,10 @@ export const submitForecast=async(req,res)=>{
         }
         //validation on forecast amount type 
         const amount=Number(forecastAmount)
-        if(Number.isFinite(amount)||amount<0){
+        if(!Number.isFinite(amount) || amount<=0){
              return res.status(400).json({
                 success:false,
-                message:"forecast amount must be greater than"
+                message:"Forecast amount must be greater than 0"
             })
         }
 
@@ -68,7 +67,7 @@ export const submitForecast=async(req,res)=>{
             })
         }
         //check if the result is pending aur not
-        if(forecast.result!==null){
+        if(forecast.result!=="pending"){
             return res.status(400).json({
                 success:false,
                 message:"Result is already declared"
@@ -82,7 +81,7 @@ export const submitForecast=async(req,res)=>{
             userId,
             forecastId,
             choice,
-            amount,
+            forecastAmount: amount,
 
         })
         if(choice=='yes'){
@@ -112,10 +111,10 @@ export const submitForecast=async(req,res)=>{
     }
 }
 export const getForecastHistory=async(req,res)=>{
-    const{userId}=req.user.id
     try {
+        const userId=req.user.id
         const history=await userForecast.find({userId})
-        . populate('forecastId',"question category startTime endTime result")
+        .populate('forecastId',"question category startTime endTime result")
         .sort({createdAt:-1})
 
         return res.status(200).json({

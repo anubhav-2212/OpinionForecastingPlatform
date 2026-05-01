@@ -6,8 +6,6 @@ import Wallet from "../models/wallet.models.js";
 
 export const createPrediction=async(req,res)=>{
     const{question,category,startTime,endTime}=req.body
-    console.log(req.user)
-    console.log(question,category,startTime,endTime)
 
     if(!question || !category || !startTime || !endTime){
         return res.status(400).json({
@@ -63,27 +61,29 @@ export const getPrediction=async(req,res)=>{
         filter={
             startTime:{$lte:now},
             endTime:{$gte:now},
-            result:null
+            result:"pending"
         }
     }
     else if(status=="upcoming"){
         filter={
-            startTime:{$gte:now}
+            startTime:{$gte:now},
+            result:"pending"
         }
     }
     else if(status=="closed"){
         filter={
-            endTime:{$lte:now}
+            endTime:{$lte:now},
+            result:"pending"
         }
     }
     else if (status=="settled"){
         filter={
-            result:{$ne:null}
+            result:{$in:["yes","no"]}
         }
     }
     else{
         filter={
-            result:null
+            result:{$in:["pending","yes","no"]}
         }
 
     }
@@ -98,15 +98,9 @@ export const getPrediction=async(req,res)=>{
 
     
 
-    if (predictions.length === 0) {
-    return res.status(404).json({
-        success: false,
-        message: "No predictions found"
-    });
-}
   const responseWithStatus=predictions.map(p=>{
-    let statusValue="upcomimg"
-    if(p.result!= null) statusValue="settled"
+    let statusValue="upcoming"
+    if(["yes","no"].includes(p.result)) statusValue="settled"
     else if(p.startTime>now) statusValue="upcoming"
     else if(p.startTime<=now && now<=p.endTime) statusValue="live"
     else if(p.endTime<now) statusValue="closed"
@@ -120,7 +114,7 @@ export const getPrediction=async(req,res)=>{
 
     res.status(200).json({
         success:true,
-        message:"Prediction found successfully",
+        message:predictions.length ? "Prediction found successfully" : "No predictions found",
         count:predictions.length,
         data:responseWithStatus
     })
@@ -139,8 +133,8 @@ export const getPredictionById=async(req,res)=>{
             message:"Invalid Id"
         })
     }
-    let statusValue="Upcoming"
-    if (prediction.result!=null) statusValue="settled"
+    let statusValue="upcoming"
+    if (["yes","no"].includes(prediction.result)) statusValue="settled"
     else if (prediction.startTime>now) statusValue="upcoming"
     else if(prediction.startTime<= now && prediction.endTime>= now) statusValue="live"
     else if(prediction.endTime<now) statusValue="closed"
@@ -195,7 +189,7 @@ export const setPredictionResult=async(req,res)=>{
                 message:"Forecast not found"
             })
         }
-        if(forecast.result!==null){
+        if(forecast.result!=="pending"){
             return res.status(400).json({
                 success:false,
                 message:"Result Already Declared"
@@ -205,7 +199,7 @@ export const setPredictionResult=async(req,res)=>{
         await forecast.save();
 
         const userForecasts=await userForecast.find({forecastId})
-        if(!userForecast){
+        if(!userForecasts.length){
             return res.status(400).json({
                 success:false,
                 message:"No users Predicted"

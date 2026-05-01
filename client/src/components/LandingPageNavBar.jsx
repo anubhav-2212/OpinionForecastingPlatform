@@ -1,24 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import LandingPage from '../Pages/LandingPage';
+import { BrainCircuit, ChevronRight, Radar } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const LandingPageNavBar = () => {
   return (
-    <div className='flex justify-between items-center p-4'>
-        <h2 className='font-bold text-xl bg-blue-300 rounded-xl overflow-hidden tracking-tight px-4 py-1'>Predictify</h2>
-        <div className='flex gap-10 items-center '>
-          <a  className='cursor-pointer hover:bg-blue-200 rounded-2xl px-4' href="">Home</a>
-<Link to="/login" >
-<button className='bg-blue-500 px-4 py-2 rounded-2xl text-white cursor-pointer transition duration-300 hover:bg-blue-600'>Login</button>
-</Link>
-
-          <Link to='/signin'>
-          <button className='bg-blue-500 px-4 py-2 rounded-2xl text-white cursor-pointer transition duration-300 hover:bg-blue-600'>Sign IN</button></Link>
-          
+    <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
+      <div className="flex items-center gap-3">
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/20">
+          <Radar className="h-5 w-5" />
         </div>
-      
-    </div>
-  )
-}
+        <div>
+          <h2 className="text-xl font-semibold tracking-tight text-slate-900">Predictify</h2>
+          <p className="text-xs uppercase tracking-[0.28em] text-slate-500">Forecast the world better</p>
+        </div>
+      </div>
 
-export default LandingPageNavBar
+      <div className="hidden items-center gap-3 rounded-full border border-white/70 bg-white/70 px-4 py-2 text-sm text-slate-600 md:flex">
+        <BrainCircuit className="h-4 w-4 text-[#d97706]" />
+        AI-assisted market intelligence
+      </div>
+
+      <div className="flex items-center gap-3">
+        <Link
+          to="/login"
+          className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-900 hover:text-slate-900"
+        >
+          Login
+        </Link>
+        <Link
+          to="/signin"
+          className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+        >
+          Get Started
+          <ChevronRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </header>
+  );
+};
+
+export default LandingPageNavBar;

@@ -35,7 +35,7 @@ export const register=async(req,res)=>{
         //its better to create wallet when user Signs up
         await Wallet.create({userId:user._id,balance:1000,transactions:[]})
          const token=jwt.sign({id:user._id,email:user.email,role:user.role},process.env.JWT_SECRET,{expiresIn:"1d"})
-        res.cookie("token",token,{httpOnly:true,secure:true,sameSite:"none"})
+        res.cookie("token",token,{httpOnly:true,secure:false,sameSite:"lax"})
         res.status(201).json({
             success:true,
             message:"User created successfully",
@@ -104,7 +104,7 @@ export const logout=async(req,res)=>{
             message:"Unauthorized Please login"})
     }
     try{
-    res.clearCookie("token")
+    res.clearCookie("token",{httpOnly:true,secure:false,sameSite:"lax"})
     res.status(200).json({
         success:true,
         message:"User logged out successfully"})
