@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
     const{wallet,loading}=useWallet();
-    const {isAuth}=useAuth();
     const{logout}=useAuth();
     const handleSubmit=async(e)=>{
       e.preventDefault();

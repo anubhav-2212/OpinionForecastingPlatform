@@ -24,7 +24,7 @@ const Login = () => {
             [e.target.name]:e.target.value
 
         }))
-        console.log(user.email,user.password)
+      
     }
     const handleSubmit=async(e)=>{
         e.preventDefault()
@@ -35,7 +35,7 @@ const Login = () => {
         .then(async(res)=>{
             console.log(res?.data?.message)
             toast.success(res?.data?.message)
-              navigate('/home')
+            navigate('/home')
             await fetchUser();
           
           

@@ -24,7 +24,7 @@ const SignIn = () => {
       ...prevUser,
       [e.target.name]: e.target.value
     }))
-    console.log(user.name,user.email,user.password,user.role )
+    // console.log(user.name,user.email,user.password,user.role )
   }
   const handleSubmit=(e)=>{
     e.preventDefault();
@@ -36,6 +36,8 @@ const SignIn = () => {
         
         toast.success(res.data.message)
         console.log(res.data.message)
+        // sending user data to Auth context
+        
         navigate('/home')
 
     })

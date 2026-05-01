@@ -15,12 +15,13 @@ export const AuthProvider = ({children}) => {
       const fetchUser=async()=>{
             try {
                 const res=await api.get("/auth/profile")
-                setUser(res?.data?.user)
-                console.log(res?.data?.user)
+                setUser(res?.data?.User)
+                console.log(res?.data?.User)
                 setIsAuth(true);
             } catch (error) {
                 console.log("Error Getting User",error)
-                
+                setUser(null)
+                setIsAuth(false)
             }
             finally{
                 setLoading(false)
@@ -36,7 +37,7 @@ export const AuthProvider = ({children}) => {
             }
             finally{
                setUser(null)
-                setIsAuth(false)
+               setIsAuth(false)
             }
         }
 
