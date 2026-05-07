@@ -1,6 +1,6 @@
 # 🚀 Opinion Forecasting Platform
 
-A full-stack prediction and opinion forecasting platform where users can participate in YES/NO based forecasts using virtual wallet balance. The platform allows users to stake amounts on predictions, track forecasting history, and receive rewards based on correct outcomes.
+A Backend API for prediction and opinion forecasting  where users can participate in YES/NO based forecasts using virtual wallet balance. The platform allows users to stake amounts on predictions, track forecasting history, and receive rewards based on correct outcomes.
 
 The project focuses heavily on backend business logic including authentication, wallet management, prediction lifecycle handling, reward settlement, and secure API architecture.
 
