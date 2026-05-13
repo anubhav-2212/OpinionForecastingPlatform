@@ -1,12 +1,12 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectDB } from "./utils/db.js";
+import { connectDB } from "./src/utils/db.js";
 import cookieParser from "cookie-parser";
-import authRoutes from "./routes/auth.routes.js";
-import predictionRoutes from "./routes/Prediction.routes.js";
-import userForecastRouter from "./routes/userForecast.routes.js";
-import walletRoutes from "./routes/wallet.routes.js";
+import authRoutes from "./src/routes/auth.routes.js";
+import predictionRoutes from "./src/routes/Prediction.routes.js";
+import userForecastRouter from "./src/routes/userForecast.routes.js";
+import walletRoutes from "./src/routes/wallet.routes.js";
 
 dotenv.config();
 

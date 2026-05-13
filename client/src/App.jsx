@@ -11,7 +11,6 @@ import { useAuth } from './context/AuthContext.jsx';
 function App() {
   
     const { isAuth, loading } = useAuth();
-    console.log(isAuth,loading);
 
   if (loading) {
     return <div className="flex items-center justify-center h-screen">Loading...</div>;
