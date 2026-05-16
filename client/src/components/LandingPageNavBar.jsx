@@ -22,13 +22,13 @@ const LandingPageNavBar = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/login"
-          className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-900 hover:text-slate-900"
+          className="rounded-full border border-[#f59e0b] bg-white px-4 py-2 text-sm font-semibold text-[#b45309] transition hover:border-[#d97706] hover:bg-[#fff7ed] hover:text-[#92400e]"
         >
           Login
         </Link>
         <Link
           to="/signin"
-          className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+          className="inline-flex items-center gap-2 rounded-full bg-[#f59e0b] px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-[#d97706] hover:text-white"
         >
           Get Started
           <ChevronRight className="h-4 w-4" />

@@ -118,7 +118,7 @@ const SignIn = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+              className="w-full rounded-2xl bg-[#14b8a6] px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-[#0f766e] hover:text-white disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
             >
               {submitting ? "Creating account..." : "Create account"}
             </button>
