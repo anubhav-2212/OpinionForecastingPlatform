@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  color: #0f172a;
-  background: #f7f2e8;
+  color: #183229;
+  background:
+    radial-gradient(circle at top left, rgba(42, 157, 143, 0.14), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(231, 111, 81, 0.14), transparent 26%),
+    linear-gradient(180deg, #f8f2e7 0%, #f3ecdf 100%);
   font-family: "Satoshi", "Avenir Next", "Segoe UI", sans-serif;
 }
 
@@ -10,7 +13,10 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f7f2e8;
+  background:
+    radial-gradient(circle at top left, rgba(42, 157, 143, 0.14), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(231, 111, 81, 0.14), transparent 26%),
+    linear-gradient(180deg, #f8f2e7 0%, #f3ecdf 100%);
 }
 
 * {
