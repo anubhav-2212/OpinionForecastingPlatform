@@ -22,8 +22,8 @@ const featureCards = [
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-[#f8f2e7] text-[#183229]">
-      <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(42,157,143,0.24),_transparent_34%),radial-gradient(circle_at_80%_18%,_rgba(231,111,81,0.18),_transparent_28%),linear-gradient(180deg,_#f8f2e7_0%,_#f4ead8_72%)]" />
+    <div className="min-h-screen bg-[#edf6f7] text-[#183229]">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(42,157,143,0.24),_transparent_34%),radial-gradient(circle_at_80%_18%,_rgba(231,111,81,0.14),_transparent_28%),linear-gradient(180deg,_#edf6f7_0%,_#dfeef2_72%)]" />
       <LandingPageNavBar />
 
       <main className="mx-auto max-w-7xl px-5 pb-16 pt-10">

@@ -4,8 +4,8 @@
   color: #183229;
   background:
     radial-gradient(circle at top left, rgba(42, 157, 143, 0.14), transparent 28%),
-    radial-gradient(circle at 85% 10%, rgba(231, 111, 81, 0.14), transparent 26%),
-    linear-gradient(180deg, #f8f2e7 0%, #f3ecdf 100%);
+    radial-gradient(circle at 85% 10%, rgba(231, 111, 81, 0.1), transparent 24%),
+    linear-gradient(180deg, #edf6f7 0%, #dfeef2 100%);
   font-family: "Satoshi", "Avenir Next", "Segoe UI", sans-serif;
 }
 
@@ -15,8 +15,8 @@ body {
   min-height: 100vh;
   background:
     radial-gradient(circle at top left, rgba(42, 157, 143, 0.14), transparent 28%),
-    radial-gradient(circle at 85% 10%, rgba(231, 111, 81, 0.14), transparent 26%),
-    linear-gradient(180deg, #f8f2e7 0%, #f3ecdf 100%);
+    radial-gradient(circle at 85% 10%, rgba(231, 111, 81, 0.1), transparent 24%),
+    linear-gradient(180deg, #edf6f7 0%, #dfeef2 100%);
 }
 
 * {

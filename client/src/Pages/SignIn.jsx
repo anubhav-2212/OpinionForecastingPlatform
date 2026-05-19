@@ -40,8 +40,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f2e7] px-5 py-10">
-      <div className="absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(circle_at_top,_rgba(231,111,81,0.16),_transparent_35%),linear-gradient(180deg,_#f8f2e7_0%,_#f4ead8_100%)]" />
+    <div className="min-h-screen bg-[#edf6f7] px-5 py-10">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(circle_at_top,_rgba(231,111,81,0.16),_transparent_35%),linear-gradient(180deg,_#edf6f7_0%,_#dfeef2_100%)]" />
 
       <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#e3d6c6] bg-[#fffaf2]/85 p-4 shadow-2xl shadow-[#ddc5a7]/40 backdrop-blur sm:p-6 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-6">
         <div className="rounded-[1.75rem] bg-[linear-gradient(135deg,_#e76f51_0%,_#f4a261_42%,_#2a9d8f_100%)] p-8 text-white">

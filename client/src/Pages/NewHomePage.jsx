@@ -211,7 +211,7 @@ const NewHomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f2e7] text-[#183229]">
+    <div className="min-h-screen bg-[#edf6f7] text-[#183229]">
       <NavBar />
 
       <main className="mx-auto max-w-7xl px-5 py-8">

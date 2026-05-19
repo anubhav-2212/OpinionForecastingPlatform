@@ -13,7 +13,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-20 border-b border-[#e2d7c7] bg-[#f8f2e7]/88 backdrop-blur">
+    <nav className="sticky top-0 z-20 border-b border-[#d4e4e7] bg-[#edf6f7]/88 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#1f5c4d] text-white shadow-lg shadow-[#1f5c4d]/20">
