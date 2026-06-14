@@ -14,16 +14,19 @@ export const AuthProvider = ({children}) => {
     const hasVisited = localStorage.getItem(WAS_LOGGED_IN_KEY) === "true";
     const[isAuth,setIsAuth]=useState(hasVisited);
     const[loading,setLoading]=useState(!hasVisited);
+      const setAuthenticatedUser=(nextUser)=>{
+            setUser(nextUser)
+            setIsAuth(true)
+            setLoading(false)
+            localStorage.setItem(WAS_LOGGED_IN_KEY, "true")
+        }
       const fetchUser=async({showLoader=false} = {})=>{
             if(showLoader){
                 setLoading(true)
             }
             try {
                 const res=await api.get("/auth/profile")
-                setUser(res?.data?.User)
-                console.log(res?.data?.User)
-                setIsAuth(true);
-                localStorage.setItem(WAS_LOGGED_IN_KEY, "true")
+                setAuthenticatedUser(res?.data?.User)
             } catch (error) {
                 console.log("Error Getting User",error)
                 setUser(null)
@@ -62,7 +65,7 @@ export const AuthProvider = ({children}) => {
 
 
   return (
-   <AuthContext.Provider value={{user,loading,isAuth,fetchUser,logout}}>
+   <AuthContext.Provider value={{user,loading,isAuth,fetchUser,logout,setAuthenticatedUser}}>
     {children}
     </AuthContext.Provider>
   )

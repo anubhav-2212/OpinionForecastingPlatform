@@ -13,7 +13,7 @@ const Login = () => {
     password: "",
   });
 
-  const { fetchUser } = useAuth();
+  const { setAuthenticatedUser } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -27,8 +27,8 @@ const Login = () => {
 
     try {
       const response = await api.post("/auth/login", user);
+      setAuthenticatedUser(response?.data?.user || null);
       toast.success(response?.data?.message || "Logged in");
-      await fetchUser();
       navigate("/home");
     } catch (error) {
       toast.error(error?.response?.data?.message || "Login failed");

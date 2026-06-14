@@ -16,7 +16,7 @@ const SignIn = () => {
   });
 
   const navigate = useNavigate();
-  const { fetchUser } = useAuth();
+  const { setAuthenticatedUser } = useAuth();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,8 +29,8 @@ const SignIn = () => {
 
     try {
       const response = await api.post("/auth/register", user);
+      setAuthenticatedUser(response?.data?.user || null);
       toast.success(response?.data?.message || "Account created");
-      await fetchUser();
       navigate("/home");
     } catch (error) {
       toast.error(error?.response?.data?.message || "Signup failed");
