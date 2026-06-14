@@ -134,3 +134,62 @@ export const getForecastHistory=async(req,res)=>{
         
     }
 }
+
+export const getForecastAnalytics=async(req,res)=>{
+    try {
+        const userId=req.user.id
+        const forecasts=await userForecast.find({userId}).sort({createdAt:-1})
+
+        const summary=forecasts.reduce((acc,item)=>{
+            const stake=Number(item.forecastAmount) || 0
+            const reward=Number(item.rewardAmount) || 0
+
+            acc.totalForecasts+=1
+            acc.totalStaked+=stake
+
+            if(item.result==="won"){
+                acc.wonForecasts+=1
+                acc.settledForecasts+=1
+                acc.totalWon+=Math.max(reward-stake,0)
+            }
+            else if(item.result==="lost"){
+                acc.lostForecasts+=1
+                acc.settledForecasts+=1
+                acc.totalLost+=stake
+            }
+            else{
+                acc.pendingForecasts+=1
+            }
+
+            return acc
+        },{
+            totalForecasts:0,
+            settledForecasts:0,
+            wonForecasts:0,
+            lostForecasts:0,
+            pendingForecasts:0,
+            totalStaked:0,
+            totalWon:0,
+            totalLost:0
+        })
+
+        const totalScore=summary.settledForecasts
+            ? Math.round((summary.wonForecasts/summary.settledForecasts)*100)
+            : 0
+
+        return res.status(200).json({
+            success:true,
+            data:{
+                ...summary,
+                totalScore,
+                netProfitLoss:summary.totalWon-summary.totalLost
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success:false,
+            message:"Internal Server Error"
+        })
+    }
+}

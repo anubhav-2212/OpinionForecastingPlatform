@@ -5,11 +5,14 @@ import {
   BrainCircuit,
   CalendarClock,
   CircleDollarSign,
+  Gauge,
   LoaderCircle,
+  PiggyBank,
   ShieldCheck,
   Sparkles,
   Target,
   TrendingUp,
+  Wallet,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import NavBar from "../components/NavBar";
@@ -37,6 +40,8 @@ const formatDate = (value) =>
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
+
+const formatCoins = (value) => `${Number(value || 0).toLocaleString("en-IN")} coins`;
 
 const getStatusTone = (status) => {
   if (status === "live") return "bg-[#e9f6f2] text-[#1f5c4d]";
@@ -153,7 +158,7 @@ const PredictionCard = ({ prediction, onSubmit, pendingId }) => {
 
 const NewHomePage = () => {
   const { user } = useAuth();
-  const { board, history, loading, refreshBoard } = usePredictionBoard();
+  const { board, history, analytics, loading, refreshBoard } = usePredictionBoard();
   const [activeTab, setActiveTab] = useState("live");
   const [pendingId, setPendingId] = useState("");
   const [creating, setCreating] = useState(false);
@@ -369,6 +374,75 @@ const NewHomePage = () => {
                     Your submitted forecasts will appear here once you start participating.
                   </div>
                 ) : null}
+              </div>
+            </section>
+
+            <section className="rounded-[2rem] border border-[#e3d6c6] bg-[#fffaf2]/90 p-6 shadow-sm">
+              <div className="flex items-center gap-2 text-sm font-medium text-[#183229]">
+                <TrendingUp className="h-4 w-4 text-[#e76f51]" />
+                Analytics
+              </div>
+              <p className="mt-3 text-sm leading-6 text-[#56675f]">
+                Track your total score, how much you have won till date, and how much you have lost across settled forecasts.
+              </p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-3xl bg-[#eef7f2] p-4">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#1f5c4d]">
+                    <Gauge className="h-4 w-4" />
+                    Total score
+                  </div>
+                  <p className="mt-2 text-3xl font-semibold text-[#183229]">{analytics.totalScore}%</p>
+                  <p className="mt-1 text-sm text-[#56675f]">
+                    {analytics.wonForecasts} wins from {analytics.settledForecasts} settled forecasts
+                  </p>
+                </div>
+
+                <div className="rounded-3xl bg-[#f4efe7] p-4">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#6f7c74]">
+                    <Wallet className="h-4 w-4" />
+                    Total staked
+                  </div>
+                  <p className="mt-2 text-3xl font-semibold text-[#183229]">{formatCoins(analytics.totalStaked)}</p>
+                  <p className="mt-1 text-sm text-[#56675f]">{analytics.totalForecasts} forecasts placed till date</p>
+                </div>
+
+                <div className="rounded-3xl bg-[#eef7f2] p-4">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#1f5c4d]">
+                    <PiggyBank className="h-4 w-4" />
+                    Won till date
+                  </div>
+                  <p className="mt-2 text-3xl font-semibold text-[#183229]">{formatCoins(analytics.totalWon)}</p>
+                  <p className="mt-1 text-sm text-[#56675f]">Profit earned from winning forecasts</p>
+                </div>
+
+                <div className="rounded-3xl bg-[#fff1e7] p-4">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#b86638]">
+                    <CircleDollarSign className="h-4 w-4" />
+                    Lost till date
+                  </div>
+                  <p className="mt-2 text-3xl font-semibold text-[#183229]">{formatCoins(analytics.totalLost)}</p>
+                  <p className="mt-1 text-sm text-[#56675f]">Coins spent on losing forecasts</p>
+                </div>
+              </div>
+
+              <div className="mt-5 rounded-3xl border border-[#eadccb] bg-[#fdf7ef] p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.22em] text-[#6f7c74]">Net profit / loss</p>
+                    <p className="mt-2 text-3xl font-semibold text-[#183229]">{formatCoins(analytics.netProfitLoss)}</p>
+                  </div>
+                  <div
+                    className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${
+                      analytics.netProfitLoss >= 0 ? "bg-[#e9f6f2] text-[#1f5c4d]" : "bg-[#fff1e7] text-[#b86638]"
+                    }`}
+                  >
+                    {analytics.netProfitLoss >= 0 ? "Positive" : "Negative"}
+                  </div>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-[#56675f]">
+                  Pending forecasts: {analytics.pendingForecasts}. Wins are shown as profit after deducting your original stake.
+                </p>
               </div>
             </section>
 
