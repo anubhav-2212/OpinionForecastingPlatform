@@ -7,21 +7,28 @@ import api from '../api/axios';
 
 
 const AuthContext=createContext();
+const WAS_LOGGED_IN_KEY = "wasLoggedIn";
 
 export const AuthProvider = ({children}) => {
     const[user,setUser]=useState(null);
-    const[isAuth,setIsAuth]=useState(false);
-    const[loading,setLoading]=useState(true);
-      const fetchUser=async()=>{
+    const hasVisited = localStorage.getItem(WAS_LOGGED_IN_KEY) === "true";
+    const[isAuth,setIsAuth]=useState(hasVisited);
+    const[loading,setLoading]=useState(!hasVisited);
+      const fetchUser=async({showLoader=false} = {})=>{
+            if(showLoader){
+                setLoading(true)
+            }
             try {
                 const res=await api.get("/auth/profile")
                 setUser(res?.data?.User)
                 console.log(res?.data?.User)
                 setIsAuth(true);
+                localStorage.setItem(WAS_LOGGED_IN_KEY, "true")
             } catch (error) {
                 console.log("Error Getting User",error)
                 setUser(null)
                 setIsAuth(false)
+                localStorage.removeItem(WAS_LOGGED_IN_KEY)
             }
             finally{
                 setLoading(false)
@@ -38,11 +45,17 @@ export const AuthProvider = ({children}) => {
             finally{
                setUser(null)
                setIsAuth(false)
+               localStorage.removeItem(WAS_LOGGED_IN_KEY)
             }
         }
 
     useEffect(()=>{
-        fetchUser();
+        if(hasVisited){
+            fetchUser();
+            return;
+        }
+
+        setLoading(false);
     },[])
 
   
