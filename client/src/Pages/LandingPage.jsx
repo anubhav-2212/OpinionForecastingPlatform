@@ -31,7 +31,7 @@ const LandingPage = () => {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#d4c8b8] bg-[#fff9f0]/85 px-4 py-2 text-sm text-[#8d5b36] shadow-sm">
               <Sparkles className="h-4 w-4" />
-              Forecast better with crowd signals and AI assistance
+              Forecast better with crowd signals 
             </div>
 
             <h1 className="mt-6 max-w-3xl text-5xl font-semibold tracking-tight text-[#183229] sm:text-6xl">
@@ -46,13 +46,13 @@ const LandingPage = () => {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/signin"
-                className="rounded-full bg-[#1f5c4d] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#18483d]"
+                className="rounded-full bg-[#fff8ef] border border-[#e4d8d2] px-6 py-3 text-sm font-medium text-white transition hover:border-[#c98a59] hover:text-[#7b4323]"
               >
                 Launch your first market
               </Link>
               <Link
                 to="/login"
-                className="rounded-full border border-[#d6b98e] bg-[#fff8ef] px-6 py-3 text-sm font-medium text-[#8d5b36] transition hover:border-[#c98a59] hover:text-[#7b4323]"
+                className="rounded-full border border-[#e4d8d2] bg-[#fff8ef] px-6 py-3 text-sm font-medium text-[#8d5b36] transition hover:border-[#c98a59] hover:text-[#7b4323]"
               >
                 Explore the dashboard
               </Link>

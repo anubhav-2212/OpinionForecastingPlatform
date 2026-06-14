@@ -14,21 +14,18 @@ const LandingPageNavBar = () => {
         </div>
       </div>
 
-      <div className="hidden items-center gap-3 rounded-full border border-[#d8cdbd] bg-[#fffaf2]/85 px-4 py-2 text-sm text-[#55655d] md:flex">
-        <BrainCircuit className="h-4 w-4 text-[#e76f51]" />
-        AI-assisted market intelligence
-      </div>
+     
 
       <div className="flex items-center gap-3">
         <Link
           to="/login"
-          className="rounded-full border border-[#d6b98e] bg-[#fff8ef] px-4 py-2 text-sm font-semibold text-[#9b5a34] transition hover:border-[#c98a59] hover:bg-[#fff1df] hover:text-[#7b4323]"
+          className="rounded-full border border-[#d6b98e] bg-[#e4d8d2] px-4 py-2 text-sm font-semibold text-[#9b5a34] transition hover:border-[#c98a59] hover:bg-[#fff1df] hover:text-[#7b4323]"
         >
           Login
         </Link>
         <Link
           to="/signin"
-          className="inline-flex items-center gap-2 rounded-full bg-[#e76f51] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#cf5c40]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#d6b98e] bg-[#e4d8d2] px-4 py-2 text-sm font-semibold text-white transition hover:border-[#c98a59] hover:bg-[#fff1df] hover:text-[#7b4323]"
         >
           Get Started
           <ChevronRight className="h-4 w-4" />
