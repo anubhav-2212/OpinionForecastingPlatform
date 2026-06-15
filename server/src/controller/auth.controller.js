@@ -3,6 +3,16 @@ import User from "../models/auth.models.js"
 import jwt from "jsonwebtoken"
 import Wallet from "../models/wallet.models.js"
 
+const getCookieOptions = (req) => {
+    const origin = req.headers.origin || "";
+    const isLocalOrigin = origin.includes("localhost") || origin.includes("127.0.0.1");
+
+    return {
+        httpOnly: true,
+        secure: !isLocalOrigin,
+        sameSite: isLocalOrigin ? "lax" : "none"
+    };
+}
 
 export const register=async(req,res)=>{
 
@@ -35,7 +45,7 @@ export const register=async(req,res)=>{
         //its better to create wallet when user Signs up
         await Wallet.create({userId:user._id,balance:1000,transactions:[]})
          const token=jwt.sign({id:user._id,email:user.email,role:user.role},process.env.JWT_SECRET,{expiresIn:"1d"})
-        res.cookie("token",token,{httpOnly:true,secure:false,sameSite:"lax"})
+        res.cookie("token",token,getCookieOptions(req))
         res.status(201).json({
             success:true,
             message:"User created successfully",
@@ -77,7 +87,7 @@ export const login=async(req,res)=>{
                 message:"Invalid credentials"})
         }
         const token=jwt.sign({id:user._id,email:user.email,role:user.role},process.env.JWT_SECRET,{expiresIn:"1d"})
-        res.cookie("token",token,{httpOnly:true,secure:false,sameSite:"lax"})
+        res.cookie("token",token,getCookieOptions(req))
         res.status(200).json({
             success:true,
             message:"User logged in successfully",
@@ -104,7 +114,7 @@ export const logout=async(req,res)=>{
             message:"Unauthorized Please login"})
     }
     try{
-    res.clearCookie("token",{httpOnly:true,secure:false,sameSite:"lax"})
+    res.clearCookie("token",getCookieOptions(req))
     res.status(200).json({
         success:true,
         message:"User logged out successfully"})
