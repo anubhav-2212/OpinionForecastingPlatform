@@ -21,10 +21,6 @@ const allowedOrigins = [
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api/v1/auth",authRoutes);
-app.use("/api/v1/predictions",predictionRoutes);
-app.use("/api/v1/forecast",userForecastRouter);
-app.use("/api/v1/wallet",walletRoutes);
 app.use(cors({
     origin(origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
@@ -38,6 +34,10 @@ app.use(cors({
     
     
 }));
+app.use("/api/v1/auth",authRoutes);
+app.use("/api/v1/prediction",predictionRoutes);
+app.use("/api/v1/userForecast",userForecastRouter);
+app.use("/api/v1/wallet",walletRoutes);
 
 
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
