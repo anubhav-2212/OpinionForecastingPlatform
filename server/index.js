@@ -16,7 +16,9 @@ const allowedOrigins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://opinionforecastingplatform.onrender.com",
-    "https://opinionforecastingplatform.vercel.app"
+    "https://opinionforecastingplatform.vercel.app",
+    "https://opinion-forecasting-platform.vercel.app",
+    process.env.CLIENT_URL,
 ].filter(Boolean);
 
 app.use(express.json());
